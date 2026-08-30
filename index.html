@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuantSignal — Equity Intelligence</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div><p class="eyebrow">QUANTSIGNAL / RESEARCH TERMINAL</p><h1>Equity intelligence, with the risk visible.</h1></div>
+        <div class="market-status"><i></i> Demo market data <span>•</span> Daily timeframe</div>
+      </header>
+
+      <section class="controls" aria-label="Prediction controls">
+        <label>Instrument <select id="symbol"><option value="RELIANCE">RELIANCE</option><option value="TCS">TCS</option><option value="HDFCBANK">HDFCBANK</option><option value="INFY">INFY</option></select></label>
+        <label>Forecast horizon <select id="horizon"><option value="1">1 trading day</option><option value="5" selected>5 trading days</option><option value="10">10 trading days</option></select></label>
+        <button id="run">Run research</button>
+      </section>
+
+      <section class="hero-grid">
+        <article class="signal-card">
+          <div class="card-label">Model signal <span id="runTime">—</span></div>
+          <div class="signal-row"><strong id="signal">NEUTRAL</strong><span id="confidence" class="confidence">— confidence</span></div>
+          <p id="rationale">Run the research model to generate a scenario.</p>
+          <div class="probability"><div><span>Probability up</span><b id="pUp">—</b></div><div class="meter"><span id="meter"></span></div><div><span>Expected return</span><b id="return">—</b></div></div>
+        </article>
+        <article class="price-card"><div class="card-label">Latest simulated close</div><div class="price" id="price">—</div><p id="priceChange">Waiting for model run</p><canvas id="spark" width="560" height="190" aria-label="Price history chart"></canvas></article>
+      </section>
+
+      <section class="metrics-grid">
+        <article><div class="card-label">Market regime</div><h2 id="regime">—</h2><p id="regimeInfo">Trend and volatility classification</p></article>
+        <article><div class="card-label">Expected volatility</div><h2 id="volatility">—</h2><p>Annualized from trailing returns</p></article>
+        <article><div class="card-label">Risk gate</div><h2 id="risk">—</h2><p id="riskInfo">Position sizing & volatility guardrail</p></article>
+        <article><div class="card-label">Suggested allocation</div><h2 id="allocation">—</h2><p>Maximum portfolio exposure, research only</p></article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="panel"><div class="panel-head"><div><div class="card-label">Feature snapshot</div><h2>What moved the model</h2></div><span class="chip">Past-only inputs</span></div><div id="features" class="features"></div></article>
+        <article class="panel"><div class="panel-head"><div><div class="card-label">Walk-forward backtest</div><h2>Out-of-sample result</h2></div><span class="chip">Costs included</span></div><div class="backtest"><div><span>Strategy return</span><b id="btReturn">—</b></div><div><span>Sharpe ratio</span><b id="sharpe">—</b></div><div><span>Max drawdown</span><b id="drawdown">—</b></div><div><span>Hit rate</span><b id="hitRate">—</b></div></div><p class="fine">Expanding-window simulation. 20 bps round-trip transaction cost is deducted on changes in position.</p></article>
+      </section>
+
+      <section class="method"><div><div class="card-label">Workflow</div><h2>A research system, not a price oracle.</h2></div><ol><li><b>Data quality</b><span>Validate OHLCV and timestamps</span></li><li><b>Features</b><span>Momentum, trend, volatility, volume</span></li><li><b>Prediction</b><span>Probability and expected return</span></li><li><b>Risk layer</b><span>Volatility-aware trade filter</span></li><li><b>Validation</b><span>Walk-forward, costs, drawdown</span></li></ol></section>
+      <footer>Educational demo only. Simulated data and heuristic model outputs are not investment advice or a basis for trading. Connect audited, point-in-time market data and independently validate before any paper trading.</footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
